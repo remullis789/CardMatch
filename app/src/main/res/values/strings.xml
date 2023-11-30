@@ -2,8 +2,10 @@
     <string name="app_name">Color Match</string>
     <string name="new_game">New Game</string>
     <string name="congrats">Nice Job!</string>
+    <string name="game_button">Game</string>
+    <string name="difficulty_button">Difficulties</string>
     <string name="instructions">Quickly memorize the colors, and flip over the pairs to score. Clear the board to win!</string>
-    <string name="settings_button">Settings</string>
+    <string name="help_button">Help</string>
     <string name="choose_difficulty">Choose Your Difficulty:</string>
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
