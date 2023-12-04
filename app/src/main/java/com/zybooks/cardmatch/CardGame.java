@@ -52,19 +52,20 @@ public class CardGame extends Fragment {
         return mCardGrid[height][width];
     }
 
-    // incomplete----------------------------------------------------
-    public void selectCard(int row, int col) {
-        if(!matchedCards[row][col]) {
+    public boolean selectCard(int row, int col) {
+        if(!matchedCards[row][col] && !selectedCards[row][col]) {
             selectedCardsCounter = selectedCardsCounter++;
             selectedCards[row][col] = true;
             if (selectedCardsCounter == 2) {
                 if (matchingPair()) {
                     increaseScore();
+                    return true;
                 } else {
                     resetSelectedData();
                 }
             }
         }
+        return false;
     }
 
     public void increaseScore() {
@@ -98,6 +99,8 @@ public class CardGame extends Fragment {
             selectedCardsCounter = 0;
             return true;
         }
+        selectedCards[cardOneRow][cardOneCol] = false;
+        selectedCards[cardTwoRow][cardTwoCol] = false;
         return false;
     }
 
