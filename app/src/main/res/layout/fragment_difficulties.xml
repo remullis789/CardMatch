@@ -3,40 +3,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_marginTop="20dp"
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="35sp"
+        android:layout_width="350dp"
+        android:layout_height="80dp"
+        android:layout_margin="4dp"
+        android:background="@drawable/choosedifficulty_view"
+        android:backgroundTint="@color/dark_teal"
         android:gravity="center"
-        android:layout_margin="20dp"
-        android:text="@string/choose_difficulty" />
+        android:text="@string/choose_difficulty"
+        android:textColor="@color/off_white"
+        android:textSize="30sp" />
 
-    <RadioGroup
-        android:id="@+id/color_radio_group"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <Button
+        android:id="@+id/easybutton"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/teal"
+        android:text="@string/easy"
+        android:textSize="25sp"
+        android:textColor="@color/off_white"
+        tools:ignore="DuplicateIds" />
 
-        <RadioButton android:id="@+id/radio_red"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textSize="25sp"
-            android:text="@string/easy" />
+    <Button
+        android:id="@+id/mediumbutton"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/teal"
+        android:text="@string/medium"
+        android:textSize="25sp"
+        android:textColor="@color/off_white"/>
 
-        <RadioButton android:id="@+id/radio_orange"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textSize="25sp"
-            android:text="@string/medium" />
-
-        <RadioButton android:id="@+id/radio_yellow"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:textSize="25sp"
-            android:text="@string/hard" />
-
-    </RadioGroup>
+    <Button
+        android:id="@+id/difficultbutton"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/teal"
+        android:text="@string/hard"
+        android:textSize="25sp"
+        android:textColor="@color/off_white"/>
 
 </LinearLayout>
