@@ -103,12 +103,14 @@ public class MainActivity extends AppCompatActivity {
             mNumSelected = 0;
             Toast.makeText(this, "match", Toast.LENGTH_SHORT).show();
         }
-        else if(mNumSelected == 2){
-            for(int i = 0; i < mSelectedCards.length; i++){
-                mSelectedCards[i].setBackgroundColor(mCardBackColor);
-            }
+        else {
             Toast.makeText(this, "no match", Toast.LENGTH_SHORT).show();
-            mNumSelected = 0;
+            if(mNumSelected == 2){
+                for(int i = 0; i < mSelectedCards.length; i++){
+                    mSelectedCards[i].setBackgroundColor(mCardBackColor);
+                }
+                mNumSelected = 0;
+            }
         }
         /*
          * if (mGame.isGameOver()) {

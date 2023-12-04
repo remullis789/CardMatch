@@ -41,8 +41,11 @@ public class CardGame extends Fragment {
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
                 mCardGrid[row][col] = pairList[row * width + col];
+                selectedCards[row][col] = false;
+                matchedCards[row][col] = false;
             }
         }
+
     }
 
     // get color value from grid
