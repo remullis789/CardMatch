@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_game"
-        android:name="com.zybooks.CardMatch.GameFragment"
+        android:name="com.zybooks.cardmatch.CardGame"
         android:label="@string/game_button"
         tools:layout="@layout/fragment_game" />
 
     <fragment
         android:id="@+id/navigation_color"
-        android:name="com.zybooks.CardMatch.DifficultyFragment"
+        android:name="com.zybooks.cardmatch.DifficultyFragment"
         android:label="@string/difficulty_button"
         tools:layout="@layout/fragment_difficulties" />
 
     <fragment
         android:id="@+id/navigation_help"
-        android:name="com.zybooks.CardMatch.HelpFragment"
+        android:name="com.zybooks.cardmatch.HelpFragment"
         android:label="@string/help_button"
         tools:layout="@layout/fragment_help" />
 </navigation>
