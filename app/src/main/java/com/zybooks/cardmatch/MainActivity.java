@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.ColorFilter;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.RippleDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -17,24 +20,30 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import java.util.Arrays;
+
 public class MainActivity extends AppCompatActivity {
     private CardGame mGame;
     private GridLayout mCardGrid;
-    int mCardBackColor = ContextCompat.getColor(this, R.color.dark_teal);
-    int[] mCardFaceColor = { ContextCompat.getColor(this, R.color.red),
-            ContextCompat.getColor(this, R.color.dark_orange),
-            ContextCompat.getColor(this, R.color.light_orange),
-            ContextCompat.getColor(this, R.color.yellow),
-            ContextCompat.getColor(this, R.color.light_green),
-            ContextCompat.getColor(this, R.color.dark_green),
-            ContextCompat.getColor(this, R.color.teal),
-            ContextCompat.getColor(this, R.color.blue),
-            ContextCompat.getColor(this, R.color.purple),
-            ContextCompat.getColor(this, R.color.pink) };
+    int mCardBackColor;
+    int[] mCardFaceColor = new int[10];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mCardFaceColor[0] = ContextCompat.getColor(this, R.color.red);
+        mCardFaceColor[1] = ContextCompat.getColor(this, R.color.light_orange);
+        mCardFaceColor[2] = ContextCompat.getColor(this, R.color.yellow);
+        mCardFaceColor[3] = ContextCompat.getColor(this, R.color.light_green);
+        mCardFaceColor[4] = ContextCompat.getColor(this, R.color.blue);
+        mCardFaceColor[5] = ContextCompat.getColor(this, R.color.purple);
+        mCardFaceColor[6] = ContextCompat.getColor(this, R.color.pink);
+        mCardFaceColor[7] = ContextCompat.getColor(this, R.color.dark_orange);
+        mCardFaceColor[8] = ContextCompat.getColor(this, R.color.dark_green);
+        mCardFaceColor[9] = ContextCompat.getColor(this, R.color.teal);
+        mCardBackColor = ContextCompat.getColor(this, R.color.dark_teal);
+
 
         setContentView(R.layout.activity_main);
         mCardGrid = findViewById(R.id.light_grid);
@@ -45,10 +54,11 @@ public class MainActivity extends AppCompatActivity {
             gridButton.setOnClickListener(this::onCardClick);
         }
         mGame = new CardGame();
+        startGame();
     }
 
     private void startGame() {
-        mGame.newGame(mGame.GRID_WIDTH, mGame.GRID_HEIGHT);
+        mGame.newGame(mGame.GRID_HEIGHT, mGame.GRID_WIDTH);
         setCardsFaceDown();
     }
 
@@ -56,13 +66,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Find the button's row and col
         int buttonIndex = mCardGrid.indexOfChild(view);
-        int row = buttonIndex / CardGame.GRID_WIDTH;
-        int col = buttonIndex % CardGame.GRID_HEIGHT;
+        int row = buttonIndex / mGame.GRID_WIDTH;
+        int col = buttonIndex % mGame.GRID_WIDTH;
 
+        //Log.d("CREATION", CardGame.GRID_HEIGHT + ":" + buttonIndex + ":" + row + ":" + col);
         mGame.selectCard(row, col);
-        if (cardNotFlipped(view, row, col)) {
-            flipToFace(view, row, col);
-        }
+        flipToFace(view, row, col);
 
         // Congratulate the user if the game is over
         if (mGame.isGameOver()) {
@@ -70,14 +79,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private boolean cardNotFlipped(View view, int row, int col) {
-        ColorDrawable background = (ColorDrawable) view.getBackground();
-        int color = background.getColor();
-        return color != mCardBackColor;
-    }
-
     void flipToFace(View view, int row, int col) {
-        int faceColor = mCardFaceColor[CardGame.mCardGrid[row][col]];
+        int faceColor = mCardFaceColor[mGame.getColorInt(row, col)];
+        Log.d("CREATION", String.valueOf(mGame.getColorInt(row, col)));
         view.setBackgroundColor(faceColor);
     }
 
@@ -87,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
             Button gridButton = (Button) mCardGrid.getChildAt(buttonIndex);
 
             // Find the button's row and col
-            int row = buttonIndex / CardGame.GRID_WIDTH;
-            int col = buttonIndex % CardGame.GRID_HEIGHT;
+            int row = buttonIndex / mGame.GRID_WIDTH;
+            int col = buttonIndex % mGame.GRID_WIDTH;
 
             gridButton.setBackgroundColor(mCardBackColor);
         }

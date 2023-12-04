@@ -1,5 +1,7 @@
 package com.zybooks.cardmatch;
 
+import android.util.Log;
+
 import java.util.Random;
 
 public class CardGame {
@@ -10,23 +12,38 @@ public class CardGame {
     public int selectedCardsCounter = 0;
 
     public CardGame() {
-        mCardGrid = new int[GRID_WIDTH][GRID_HEIGHT];
+        mCardGrid = new int[GRID_HEIGHT][GRID_WIDTH];
     }
 
     public int SelectedColor = 0;
 
-    public void newGame(int grid_X, int grid_Y) {
-        Random randomNumGenerator = new Random();
-        int n = (grid_X * grid_Y) / 2;
-        for (int row = 0; row < grid_X; row++) {
-            for (int col = 0; col < grid_Y; col++) {
-                mCardGrid[row][col] = randomNumGenerator.nextInt(n) + 1;
+    public void newGame(int height, int width) {
+        Random rng = new Random();
+        int numCards = height * width;
+        int[] pairList = new int[numCards];
+        // Fill the array with pairs of numbers
+        for (int i = 0; i < numCards; i++) {
+            pairList[i] = (i / 2);
+        }
+        // Shuffle the array
+        for (int i = numCards - 1; i > 0; i--) {
+            int j = rng.nextInt(i + 1);
+            int temp = pairList[i];
+            pairList[i] = pairList[j];
+            pairList[j] = temp;
+        }
+        // Step 3: Assign the numbers to the grid
+        for (int row = 0; row < height; row++) {
+            for (int col = 0; col < width; col++) {
+                mCardGrid[row][col] = pairList[row * width + col];
             }
         }
     }
 
-    public int getColorInt(int x, int y) {
-        return mCardGrid[x][y];
+    public static int getColorInt(int height, int width) {
+        Log.d("CREATION", String.valueOf(mCardGrid[height][width]));
+        Log.d("CREATION", height + ":" + width);
+        return mCardGrid[height][width];
     }
 
     public void selectCard(int row, int col) {

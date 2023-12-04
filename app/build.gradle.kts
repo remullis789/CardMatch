@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "com.zybooks.cardmatch"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.zybooks.cardmatch"
