@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private CardGame mGame;
     private GridLayout mCardGrid;
     int mCardBackColor;
+    // at its biggest of 4x5, we need 10 colors, nust be assigned in onCreate
     int[] mCardFaceColor = new int[10];
 
     @Override
@@ -43,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         mCardFaceColor[8] = ContextCompat.getColor(this, R.color.dark_green);
         mCardFaceColor[9] = ContextCompat.getColor(this, R.color.teal);
         mCardBackColor = ContextCompat.getColor(this, R.color.dark_teal);
-
 
         setContentView(R.layout.activity_main);
         mCardGrid = findViewById(R.id.light_grid);
@@ -63,37 +63,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onCardClick(View view) {
-
         // Find the button's row and col
         int buttonIndex = mCardGrid.indexOfChild(view);
         int row = buttonIndex / mGame.GRID_WIDTH;
         int col = buttonIndex % mGame.GRID_WIDTH;
-
-        //Log.d("CREATION", CardGame.GRID_HEIGHT + ":" + buttonIndex + ":" + row + ":" + col);
+        // pass info to mGame
         mGame.selectCard(row, col);
+        // view is the button
         flipToFace(view, row, col);
-
-        // Congratulate the user if the game is over
-        if (mGame.isGameOver()) {
-            Toast.makeText(this, R.string.congrats, Toast.LENGTH_SHORT).show();
-        }
+        /*
+         * if (mGame.isGameOver()) {
+         * Toast.makeText(this, R.string.congrats, Toast.LENGTH_SHORT).show();
+         * }
+         */
     }
 
     void flipToFace(View view, int row, int col) {
+        // match color value to grid color number randomly asssigned in CardGame
         int faceColor = mCardFaceColor[mGame.getColorInt(row, col)];
-        Log.d("CREATION", String.valueOf(mGame.getColorInt(row, col)));
         view.setBackgroundColor(faceColor);
     }
 
     private void setCardsFaceDown() {
-
         for (int buttonIndex = 0; buttonIndex < mCardGrid.getChildCount(); buttonIndex++) {
             Button gridButton = (Button) mCardGrid.getChildAt(buttonIndex);
-
             // Find the button's row and col
             int row = buttonIndex / mGame.GRID_WIDTH;
             int col = buttonIndex % mGame.GRID_WIDTH;
-
             gridButton.setBackgroundColor(mCardBackColor);
         }
     }
@@ -102,32 +98,38 @@ public class MainActivity extends AppCompatActivity {
         startGame();
     }
 
-    /*public void onHelpClick(View view) {
-        Intent intent = new Intent(this, HelpActivity.class);
-        startActivity(intent);
-    }
-
-    public void onChangeColorClick(View view) {
-        // Send the current color ID to ColorActivity
-        Intent intent = new Intent(this, ColorActivity.class);
-        intent.putExtra(ColorActivity.EXTRA_COLOR, mLightOnColorId);
-        mColorResultLauncher.launch(intent);
-        // save
-    }
-
-    ActivityResultLauncher<Intent> mColorResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == Activity.RESULT_OK) {
-                        Intent data = result.getData();
-                        if (data != null) {
-                            // Create the "on" button color from the chosen color ID from ColorActivity
-                            mLightOnColorId = data.getIntExtra(ColorActivity.EXTRA_COLOR, R.color.yellow);
-                            mLightOnColor = ContextCompat.getColor(MainActivity.this, mLightOnColorId);
-                            setButtonColors(mLightOnColor);
-                        }
-                    }
-                }
-            });*/
+    /*
+     * public void onHelpClick(View view) {
+     * Intent intent = new Intent(this, HelpActivity.class);
+     * startActivity(intent);
+     * }
+     * 
+     * public void onChangeColorClick(View view) {
+     * // Send the current color ID to ColorActivity
+     * Intent intent = new Intent(this, ColorActivity.class);
+     * intent.putExtra(ColorActivity.EXTRA_COLOR, mLightOnColorId);
+     * mColorResultLauncher.launch(intent);
+     * // save
+     * }
+     * 
+     * ActivityResultLauncher<Intent> mColorResultLauncher =
+     * registerForActivityResult(
+     * new ActivityResultContracts.StartActivityForResult(), new
+     * ActivityResultCallback<ActivityResult>() {
+     * 
+     * @Override
+     * public void onActivityResult(ActivityResult result) {
+     * if (result.getResultCode() == Activity.RESULT_OK) {
+     * Intent data = result.getData();
+     * if (data != null) {
+     * // Create the "on" button color from the chosen color ID from ColorActivity
+     * mLightOnColorId = data.getIntExtra(ColorActivity.EXTRA_COLOR,
+     * R.color.yellow);
+     * mLightOnColor = ContextCompat.getColor(MainActivity.this, mLightOnColorId);
+     * setButtonColors(mLightOnColor);
+     * }
+     * }
+     * }
+     * });
+     */
 }
