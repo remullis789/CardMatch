@@ -26,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
     private CardGame mGame;
     private GridLayout mCardGrid;
     int mCardBackColor;
-    // at its biggest of 4x5, we need 10 colors, nust be assigned in onCreate
+    // at its biggest of 4x5, we need 10 colors, must be assigned in onCreate
     int[] mCardFaceColor = new int[10];
+    View[] mSelectedCards = new View[2];
+    int mNumSelected = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +70,23 @@ public class MainActivity extends AppCompatActivity {
         int row = buttonIndex / mGame.GRID_WIDTH;
         int col = buttonIndex % mGame.GRID_WIDTH;
         // pass info to mGame
-        mGame.selectCard(row, col);
+        boolean matched = mGame.selectCard(row, col);
         // view is the button
         flipToFace(view, row, col);
+        // save view to be flipped back if not a match
+        mSelectedCards[mNumSelected] = view;
+        mNumSelected = mNumSelected++;
+        if(matched){
+            mNumSelected = 0;
+            Toast.makeText(this, "match", Toast.LENGTH_SHORT).show();
+        }
+        else if(mNumSelected == 2){
+            for(int i = 0; i < mSelectedCards.length; i++){
+                mSelectedCards[i].setBackgroundColor(mCardBackColor);
+            }
+            Toast.makeText(this, "no match", Toast.LENGTH_SHORT).show();
+            mNumSelected = 0;
+        }
         /*
          * if (mGame.isGameOver()) {
          * Toast.makeText(this, R.string.congrats, Toast.LENGTH_SHORT).show();
