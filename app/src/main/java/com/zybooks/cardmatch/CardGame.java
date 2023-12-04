@@ -2,14 +2,18 @@ package com.zybooks.cardmatch;
 
 import android.util.Log;
 
+import androidx.fragment.app.Fragment;
+
 import java.util.Random;
 
-public class CardGame {
+public class CardGame extends Fragment {
     public int GRID_WIDTH = 3;
     public int GRID_HEIGHT = 4;
     public static int[][] mCardGrid;
     public static int score = 0;
     public int selectedCardsCounter = 0;
+    public boolean[][] selectedCards = new boolean[GRID_HEIGHT][GRID_WIDTH];
+    public boolean[][] matchedCards = new boolean[GRID_HEIGHT][GRID_WIDTH];
 
     public CardGame() {
         mCardGrid = new int[GRID_HEIGHT][GRID_WIDTH];
@@ -50,12 +54,15 @@ public class CardGame {
 
     // incomplete----------------------------------------------------
     public void selectCard(int row, int col) {
-        selectedCardsCounter = selectedCardsCounter++;
-        if (selectedCardsCounter == 2) {
-            if (matchingPair()) {
-                increaseScore();
-            } else {
-                resetSelectedData();
+        if(!matchedCards[row][col]) {
+            selectedCardsCounter = selectedCardsCounter++;
+            selectedCards[row][col] = true;
+            if (selectedCardsCounter == 2) {
+                if (matchingPair()) {
+                    increaseScore();
+                } else {
+                    resetSelectedData();
+                }
             }
         }
     }
@@ -64,6 +71,33 @@ public class CardGame {
     }
 
     public boolean matchingPair() {
+        int cardOneRow = -1;
+        int cardOneCol = -1;
+        int cardTwoRow = -1;
+        int cardTwoCol = -1;
+
+        for(int i = 0; i < GRID_HEIGHT; i++){
+            for(int j = 0; i < GRID_WIDTH; j++){
+                if(selectedCards[i][j]){
+                    if (cardOneRow == -1) {
+                        cardOneRow = i;
+                        cardOneCol = j;
+                    } else {
+                        cardTwoRow = i;
+                        cardTwoCol = j;
+                    }
+                }
+            }
+        }
+
+        if(getColorInt(cardOneRow, cardOneCol) == getColorInt(cardTwoRow, cardTwoCol)){
+            matchedCards[cardOneRow][cardOneCol] = true;
+            matchedCards[cardTwoRow][cardTwoCol] = true;
+            selectedCards[cardOneRow][cardOneCol] = false;
+            selectedCards[cardTwoRow][cardTwoCol] = false;
+            selectedCardsCounter = 0;
+            return true;
+        }
         return false;
     }
 

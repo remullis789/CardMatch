@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void flipToFace(View view, int row, int col) {
-        // match color value to grid color number randomly asssigned in CardGame
+        // match color value to grid color number randomly assigned in CardGame
         int faceColor = mCardFaceColor[mGame.getColorInt(row, col)];
         view.setBackgroundColor(faceColor);
     }
