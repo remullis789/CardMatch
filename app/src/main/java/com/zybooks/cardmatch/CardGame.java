@@ -54,6 +54,20 @@ public class CardGame extends Fragment {
         return mCardGrid[height][width];
     }
 
+    public boolean isNotMatched(int row, int col){
+        return !matchedCards[row][col];
+    }
+
+    public boolean isNotSelected(int row, int col){
+        // If one card has been selected
+        // check if the passed card has not been selected
+        if(selectedCardsCounter == 1){
+            if(row == selectedCards[0] && col == selectedCards[1])
+                return false;
+        }
+        return true;
+    }
+
     // incomplete----------------------------------------------------
     // does too much, need to split
     public boolean selectCard(int row, int col) {
