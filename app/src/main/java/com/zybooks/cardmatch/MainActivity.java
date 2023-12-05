@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     int mCardBackColor;
     // at its biggest of 4x5, we need 10 colors, nust be assigned in onCreate
     int[] mCardFaceColor = new int[10];
+    View[] selectedViewsPair = new View[2];
+    int selectedViewsCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         mCardFaceColor[8] = ContextCompat.getColor(this, R.color.dark_green);
         mCardFaceColor[9] = ContextCompat.getColor(this, R.color.teal);
         mCardBackColor = ContextCompat.getColor(this, R.color.dark_teal);
+
+        selectedViewsCounter = 0;
 
         setContentView(R.layout.activity_main);
         mCardGrid = findViewById(R.id.light_grid);
@@ -63,19 +67,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onCardClick(View view) {
+        selectedViewsPair[selectedViewsCounter] = view;
+        selectedViewsCounter++;
         // Find the button's row and col
         int buttonIndex = mCardGrid.indexOfChild(view);
         int row = buttonIndex / mGame.GRID_WIDTH;
         int col = buttonIndex % mGame.GRID_WIDTH;
-        // pass info to mGame
-        mGame.selectCard(row, col);
-        // view is the button
+        // pass selected info to mGame, checks if selected card was a match
+        boolean wasMatch = mGame.selectCard(row, col);
         flipToFace(view, row, col);
-        /*
-         * if (mGame.isGameOver()) {
-         * Toast.makeText(this, R.string.congrats, Toast.LENGTH_SHORT).show();
-         * }
-         */
+        if ((selectedViewsCounter == 2) && (!wasMatch)){
+            flipPairToBack(selectedViewsPair);
+            selectedViewsCounter = 0;
+        } else if ((selectedViewsCounter == 2) && (wasMatch)) {
+            selectedViewsCounter = 0;
+        }
+    }
+
+    private void flipPairToBack(View[] viewPair) {
+        viewPair[0].setBackgroundColor(mCardBackColor);
+        viewPair[1].setBackgroundColor(mCardBackColor);
     }
 
     void flipToFace(View view, int row, int col) {
