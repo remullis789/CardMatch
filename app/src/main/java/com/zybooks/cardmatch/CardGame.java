@@ -54,6 +54,10 @@ public class CardGame extends Fragment {
         return mCardGrid[height][width];
     }
 
+    public boolean isMatched(int row, int col){
+        return matchedCards[row][col];
+    }
+
     // incomplete----------------------------------------------------
     // does too much, need to split
     public boolean selectCard(int row, int col) {

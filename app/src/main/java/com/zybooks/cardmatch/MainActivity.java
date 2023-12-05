@@ -93,28 +93,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onCardClick(View view) {
-        selectedViewsPair[selectedViewsCounter] = view;
-        selectedViewsCounter++;
         // Find the button's row and col
         int buttonIndex = mCardGrid.indexOfChild(view);
         int row = buttonIndex / mGame.GRID_WIDTH;
         int col = buttonIndex % mGame.GRID_WIDTH;
-        // pass selected info to mGame, checks if selected card was a match
-        boolean wasMatch = mGame.selectCard(row, col);
-        flipToFace(view, row, col);
-        if ((selectedViewsCounter == 2) && (!wasMatch)){
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                public void run() {
-                    flipPairToBack(selectedViewsPair);
-                    selectedViewsCounter = 0;
-                }
-            }, 500);
+        if(!mGame.isMatched(row, col)) {
+            selectedViewsPair[selectedViewsCounter] = view;
+            selectedViewsCounter++;
+            // pass selected info to mGame, checks if selected card was a match
+            boolean wasMatch = mGame.selectCard(row, col);
+            flipToFace(view, row, col);
+            if ((selectedViewsCounter == 2) && (!wasMatch)) {
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    public void run() {
+                        flipPairToBack(selectedViewsPair);
+                        selectedViewsCounter = 0;
+                    }
+                }, 500);
 
-        } else if ((selectedViewsCounter == 2) && (wasMatch)) {
-            selectedViewsCounter = 0;
-            mScore = findViewById(R.id.score_text);
-            mScore.setText("Score: " + mGame.getScore());
+            } else if ((selectedViewsCounter == 2) && (wasMatch)) {
+                selectedViewsCounter = 0;
+                mScore = findViewById(R.id.score_text);
+                mScore.setText("Score: " + mGame.getScore());
+            }
         }
     }
 
