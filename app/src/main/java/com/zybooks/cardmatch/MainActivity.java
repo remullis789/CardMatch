@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -31,6 +32,7 @@ import java.util.Arrays;
 public class MainActivity extends AppCompatActivity {
     private CardGame mGame;
     private GridLayout mCardGrid;
+    private TextView mScore;
     int mCardBackColor;
     // at its biggest of 4x5, we need 10 colors, must be assigned in onCreate
     int[] mCardFaceColor = new int[10];
@@ -104,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
             selectedViewsCounter = 0;
         } else if ((selectedViewsCounter == 2) && (wasMatch)) {
             selectedViewsCounter = 0;
+            mScore = findViewById(R.id.score_text);
+            mScore.setText("Score: " + mGame.getScore());
         }
     }
 
@@ -129,6 +133,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onNewGameClick(View view) {
+        mScore = findViewById(R.id.score_text);
+        mScore.setText("Score: 0");
         startGame();
     }
 
