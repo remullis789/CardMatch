@@ -95,8 +95,6 @@ public class CardGame extends Fragment {
             matchedCards[row_2][col_2] = true;
             return true;
         }
-        selectedCards[cardOneRow][cardOneCol] = false;
-        selectedCards[cardTwoRow][cardTwoCol] = false;
         return false;
     }
 
