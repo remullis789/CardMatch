@@ -19,6 +19,12 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Arrays;
 
@@ -26,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private CardGame mGame;
     private GridLayout mCardGrid;
     int mCardBackColor;
-    // at its biggest of 4x5, we need 10 colors, nust be assigned in onCreate
+    // at its biggest of 4x5, we need 10 colors, must be assigned in onCreate
     int[] mCardFaceColor = new int[10];
     View[] selectedViewsPair = new View[2];
     int selectedViewsCounter;
@@ -50,6 +56,23 @@ public class MainActivity extends AppCompatActivity {
         selectedViewsCounter = 0;
 
         setContentView(R.layout.activity_main);
+        //this is the code for fragment navigation to be added after
+        /*
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.nav_host_fragment);
+
+        if (navHostFragment != null) {
+            NavController navController = navHostFragment.getNavController();
+
+            AppBarConfiguration appBarConfig = new AppBarConfiguration.Builder(
+                    R.id.navigation_game, R.id.navigation_color, R.id.navigation_help)
+                    .build();
+
+            NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig);
+            NavigationUI.setupWithNavController(navView, navController);
+        } */
+
         mCardGrid = findViewById(R.id.light_grid);
 
         // Add the same click handler to all grid buttons

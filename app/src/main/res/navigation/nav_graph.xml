@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_help"
-        android:name="com.zybooks.cardmatch.HelpFragment"
+        android:name="com.zybooks.cardmatch.helpFragment"
         android:label="@string/help_button"
         tools:layout="@layout/fragment_help" />
 </navigation>
