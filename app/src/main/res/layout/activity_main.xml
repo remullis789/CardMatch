@@ -3,11 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.zybooks.cardmatch.MainActivity">
 
-    <TextView
+    <!--<TextView
         android:id="@+id/score_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,7 +44,7 @@
         <Button style="@style/Card"/>
         <Button style="@style/Card"/>
         <Button style="@style/Card"/>
-    </GridLayout>
+    </GridLayout>-->
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
@@ -69,7 +70,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 
-    <Button
+    <!--<Button
         android:id="@+id/new_game_button"
         style="@style/GameOptionButton"
         android:layout_marginTop="40dp"
@@ -82,7 +83,7 @@
         app:layout_constraintTop_toBottomOf="@id/light_grid"
         android:background="@drawable/newgame_button"/>
 
-    <!--<Button
+    <Button
         android:id="@+id/setings_button"
         style="@style/GameOptionButton"
         android:layout_marginTop="10dp"

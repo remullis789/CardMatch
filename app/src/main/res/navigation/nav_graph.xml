@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/navigation_game"
-        android:name="com.zybooks.cardmatch.CardGame"
+        android:name="com.zybooks.cardmatch.GameFragment"
         android:label="@string/game_button"
         tools:layout="@layout/fragment_game" />
 
     <fragment
-        android:id="@+id/navigation_color"
+        android:id="@+id/navigation_difficulty"
         android:name="com.zybooks.cardmatch.DifficultyFragment"
         android:label="@string/difficulty_button"
         tools:layout="@layout/fragment_difficulties" />
