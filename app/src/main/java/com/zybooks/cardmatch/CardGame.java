@@ -12,7 +12,8 @@ public class CardGame extends Fragment {
     public static int[][] mCardGrid;
     public static int score = 0;
     public int selectedCardsCounter = 0;
-    public boolean[][] selectedCards = new boolean[GRID_HEIGHT][GRID_WIDTH];
+    // {1st row, 1st col, 2nd row, 2nd col}
+    public int[] selectedCards = {-1, -1, -1, -1};
     public boolean[][] matchedCards = new boolean[GRID_HEIGHT][GRID_WIDTH];
 
     public CardGame() {
@@ -41,7 +42,6 @@ public class CardGame extends Fragment {
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
                 mCardGrid[row][col] = pairList[row * width + col];
-                selectedCards[row][col] = false;
                 matchedCards[row][col] = false;
             }
         }
@@ -50,56 +50,49 @@ public class CardGame extends Fragment {
 
     // get color value from grid
     public int getColorInt(int height, int width) {
-        Log.d("CREATION", String.valueOf(mCardGrid[height][width]));
-        Log.d("CREATION", height + ":" + width);
         return mCardGrid[height][width];
     }
 
+    // incomplete----------------------------------------------------
+    // does too much, need to split
     public boolean selectCard(int row, int col) {
-        if(!matchedCards[row][col] && !selectedCards[row][col]) {
-            selectedCardsCounter = selectedCardsCounter++;
-            selectedCards[row][col] = true;
-            if (selectedCardsCounter == 2) {
+        // only lets user interact with unmatched cards
+        if(!matchedCards[row][col]) {
+            selectedCardsCounter++;
+            Log.d("CREATION", String.valueOf(selectedCardsCounter));
+            // determine if user selected 1st or 2nd card, record
+            if (selectedCardsCounter == 1) {
+                selectedCards[0] = row;
+                selectedCards[1] = col;
+            } else if (selectedCardsCounter == 2) {
+                selectedCards[2] = row;
+                selectedCards[3] = col;
+
                 if (matchingPair()) {
                     increaseScore();
+                    resetSelectedData(); // Reset after handling a pair
                     return true;
-                } else {
-                    resetSelectedData();
                 }
+                resetSelectedData(); // Reset if not a pair
+                return false;
             }
         }
-        return false;
+        return false; // Return false if the card is already matched
     }
 
     public void increaseScore() {
     }
 
     public boolean matchingPair() {
-        int cardOneRow = -1;
-        int cardOneCol = -1;
-        int cardTwoRow = -1;
-        int cardTwoCol = -1;
+        int row_1 = selectedCards[0];
+        int col_1 = selectedCards[1];
+        int row_2 = selectedCards[2];
+        int col_2 = selectedCards[3];
 
-        for(int i = 0; i < GRID_HEIGHT; i++){
-            for(int j = 0; i < GRID_WIDTH; j++){
-                if(selectedCards[i][j]){
-                    if (cardOneRow == -1) {
-                        cardOneRow = i;
-                        cardOneCol = j;
-                    } else {
-                        cardTwoRow = i;
-                        cardTwoCol = j;
-                    }
-                }
-            }
-        }
-
-        if(getColorInt(cardOneRow, cardOneCol) == getColorInt(cardTwoRow, cardTwoCol)){
-            matchedCards[cardOneRow][cardOneCol] = true;
-            matchedCards[cardTwoRow][cardTwoCol] = true;
-            selectedCards[cardOneRow][cardOneCol] = false;
-            selectedCards[cardTwoRow][cardTwoCol] = false;
-            selectedCardsCounter = 0;
+        Log.d("CREATION", String.valueOf(mCardGrid[row_1][col_1] == mCardGrid[row_2][col_2]));
+        if(mCardGrid[row_1][col_1] == mCardGrid[row_2][col_2]){
+            matchedCards[row_1][col_1] = true;
+            matchedCards[row_2][col_2] = true;
             return true;
         }
         selectedCards[cardOneRow][cardOneCol] = false;
@@ -107,9 +100,11 @@ public class CardGame extends Fragment {
         return false;
     }
 
-    public void resetSelectedData() {
+    private void resetSelectedData() {
         selectedCardsCounter = 0;
+        selectedCards[0] = selectedCards[1] = selectedCards[2] = selectedCards[3] = -1;
     }
+
 
     public boolean isGameOver() {
         return (score == ((GRID_HEIGHT * GRID_WIDTH) / 2));
