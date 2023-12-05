@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -102,8 +103,14 @@ public class MainActivity extends AppCompatActivity {
         boolean wasMatch = mGame.selectCard(row, col);
         flipToFace(view, row, col);
         if ((selectedViewsCounter == 2) && (!wasMatch)){
-            flipPairToBack(selectedViewsPair);
-            selectedViewsCounter = 0;
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    flipPairToBack(selectedViewsPair);
+                    selectedViewsCounter = 0;
+                }
+            }, 500);
+
         } else if ((selectedViewsCounter == 2) && (wasMatch)) {
             selectedViewsCounter = 0;
             mScore = findViewById(R.id.score_text);
