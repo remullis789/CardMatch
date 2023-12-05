@@ -31,36 +31,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
-    private CardGame mGame;
-    private GridLayout mCardGrid;
-    private TextView mScore;
-    int mCardBackColor;
-    // at its biggest of 4x5, we need 10 colors, must be assigned in onCreate
-    int[] mCardFaceColor = new int[10];
-    View[] selectedViewsPair = new View[2];
-    int selectedViewsCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mCardFaceColor[0] = ContextCompat.getColor(this, R.color.red);
-        mCardFaceColor[1] = ContextCompat.getColor(this, R.color.light_orange);
-        mCardFaceColor[2] = ContextCompat.getColor(this, R.color.yellow);
-        mCardFaceColor[3] = ContextCompat.getColor(this, R.color.light_green);
-        mCardFaceColor[4] = ContextCompat.getColor(this, R.color.blue);
-        mCardFaceColor[5] = ContextCompat.getColor(this, R.color.purple);
-        mCardFaceColor[6] = ContextCompat.getColor(this, R.color.pink);
-        mCardFaceColor[7] = ContextCompat.getColor(this, R.color.dark_orange);
-        mCardFaceColor[8] = ContextCompat.getColor(this, R.color.dark_green);
-        mCardFaceColor[9] = ContextCompat.getColor(this, R.color.teal);
-        mCardBackColor = ContextCompat.getColor(this, R.color.dark_teal);
-
-        selectedViewsCounter = 0;
-
         setContentView(R.layout.activity_main);
-        //this is the code for fragment navigation to be added after
-        /*
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment);
@@ -69,24 +46,18 @@ public class MainActivity extends AppCompatActivity {
             NavController navController = navHostFragment.getNavController();
 
             AppBarConfiguration appBarConfig = new AppBarConfiguration.Builder(
-                    R.id.navigation_game, R.id.navigation_color, R.id.navigation_help)
+                    R.id.navigation_game, R.id.navigation_difficulty, R.id.navigation_help)
                     .build();
 
             NavigationUI.setupActionBarWithNavController(this, navController, appBarConfig);
             NavigationUI.setupWithNavController(navView, navController);
-        } */
-
-        mCardGrid = findViewById(R.id.light_grid);
-
-        // Add the same click handler to all grid buttons
-        for (int buttonIndex = 0; buttonIndex < mCardGrid.getChildCount(); buttonIndex++) {
-            Button gridButton = (Button) mCardGrid.getChildAt(buttonIndex);
-            gridButton.setOnClickListener(this::onCardClick);
         }
-        mGame = new CardGame();
-        startGame();
+
     }
 
+
+
+    /*
     private void startGame() {
         mGame.newGame(mGame.GRID_HEIGHT, mGame.GRID_WIDTH);
         setCardsFaceDown();
@@ -146,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
         mScore.setText("Score: 0");
         startGame();
     }
+
+     */
 
     /*
      * public void onHelpClick(View view) {
