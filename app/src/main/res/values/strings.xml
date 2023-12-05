@@ -10,7 +10,7 @@
     <string name="easy">Easy</string>
     <string name="medium">Medium</string>
     <string name="hard">Hard</string>
-    <string name="score_label">Score: </string>
+    <string name="score_label">Score: 0</string>
     <string name="title_help">Help</string>
     <string name="help_instructions">Tap a square to flip it over. Find 2 squares with the
             same color to make a match. Complete all the matches to win!</string>

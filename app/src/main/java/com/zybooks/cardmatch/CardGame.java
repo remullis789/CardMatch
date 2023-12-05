@@ -23,6 +23,7 @@ public class CardGame extends Fragment {
     public int SelectedColor = 0;
 
     public void newGame(int height, int width) {
+        score = 0;
         Random rng = new Random();
         int numCards = height * width;
         // Fill the temporary array with pairs of numbers from 0 to half of total number
@@ -81,6 +82,11 @@ public class CardGame extends Fragment {
     }
 
     public void increaseScore() {
+        score++;
+    }
+
+    public int getScore(){
+        return score;
     }
 
     public boolean matchingPair() {
