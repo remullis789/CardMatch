@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         int buttonIndex = mCardGrid.indexOfChild(view);
         int row = buttonIndex / mGame.GRID_WIDTH;
         int col = buttonIndex % mGame.GRID_WIDTH;
-        if(!mGame.isMatched(row, col)) {
+        if(mGame.isNotMatched(row, col) && mGame.isNotSelected(row, col)) {
             selectedViewsPair[selectedViewsCounter] = view;
             selectedViewsCounter++;
             // pass selected info to mGame, checks if selected card was a match
