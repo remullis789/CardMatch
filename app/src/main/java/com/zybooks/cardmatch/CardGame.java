@@ -7,22 +7,27 @@ import androidx.fragment.app.Fragment;
 import java.util.Random;
 
 public class CardGame {
-    public int GRID_WIDTH = 3;
-    public int GRID_HEIGHT = 4;
+    public static int GRID_WIDTH;
+    public static int GRID_HEIGHT;
     public static int[][] mCardGrid;
     public static int score = 0;
     public int selectedCardsCounter = 0;
     // {1st row, 1st col, 2nd row, 2nd col}
     public int[] selectedCards = {-1, -1, -1, -1};
-    public boolean[][] matchedCards = new boolean[GRID_HEIGHT][GRID_WIDTH];
+    public boolean[][] matchedCards;
 
-    public CardGame() {
+    public CardGame(int height, int width) {
+        GRID_HEIGHT = height;
+        GRID_WIDTH = width;
         mCardGrid = new int[GRID_HEIGHT][GRID_WIDTH];
+        matchedCards = new boolean[GRID_HEIGHT][GRID_WIDTH];
     }
 
     public int SelectedColor = 0;
 
     public void newGame(int height, int width) {
+        GRID_HEIGHT = height;
+        GRID_WIDTH = width;
         score = 0;
         Random rng = new Random();
         int numCards = height * width;

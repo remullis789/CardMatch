@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-public class GameFragment extends Fragment {
+public class HardDifficulty extends Fragment {
     private CardGame mGame;
     private GridLayout mCardGrid;
     //private TextView mScore;
@@ -22,12 +22,12 @@ public class GameFragment extends Fragment {
     View[] selectedViewsPair = new View[2];
     int selectedViewsCounter;
 
-    public GameFragment() {
+    public HardDifficulty() {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View parentView = inflater.inflate(R.layout.fragment_game, container, false);
+        View parentView = inflater.inflate(R.layout.fragment_hard_difficulty, container, false);
 
         mCardFaceColor[0] = ContextCompat.getColor(this.requireActivity(), R.color.red);
         mCardFaceColor[1] = ContextCompat.getColor(this.requireActivity(), R.color.light_orange);
@@ -36,7 +36,7 @@ public class GameFragment extends Fragment {
         mCardFaceColor[4] = ContextCompat.getColor(this.requireActivity(), R.color.blue);
         mCardFaceColor[5] = ContextCompat.getColor(this.requireActivity(), R.color.purple);
         mCardFaceColor[6] = ContextCompat.getColor(this.requireActivity(), R.color.pink);
-        mCardFaceColor[7] = ContextCompat.getColor(this.requireActivity(), R.color.dark_orange);
+        mCardFaceColor[7] = ContextCompat.getColor(this.requireActivity(), R.color.dark_grey);
         mCardFaceColor[8] = ContextCompat.getColor(this.requireActivity(), R.color.dark_green);
         mCardFaceColor[9] = ContextCompat.getColor(this.requireActivity(), R.color.teal);
         mCardBackColor = ContextCompat.getColor(this.requireActivity(), R.color.dark_teal);
@@ -53,7 +53,7 @@ public class GameFragment extends Fragment {
         Button newGameBtn = parentView.findViewById(R.id.new_game_button);
         newGameBtn.setOnClickListener(v -> onNewGameClick(parentView));
 
-        mGame = new CardGame(3, 4);
+        mGame = new CardGame(4, 5);
         startGame();
 
         return parentView;
@@ -68,7 +68,7 @@ public class GameFragment extends Fragment {
  */
 
     private void startGame() {
-        mGame.newGame(mGame.GRID_HEIGHT, mGame.GRID_WIDTH);
+        mGame.newGame(4, 5);
         setCardsFaceDown();
     }
 
