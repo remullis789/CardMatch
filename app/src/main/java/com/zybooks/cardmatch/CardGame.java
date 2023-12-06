@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import java.util.Random;
 
-public class CardGame extends Fragment {
+public class CardGame {
     public int GRID_WIDTH = 3;
     public int GRID_HEIGHT = 4;
     public static int[][] mCardGrid;
@@ -128,4 +128,7 @@ public class CardGame extends Fragment {
         return (score == ((GRID_HEIGHT * GRID_WIDTH) / 2));
     }
     // incomplete----------------------------------------------------
+
+
+
 }
