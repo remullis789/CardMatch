@@ -36,7 +36,7 @@ public class HardDifficulty extends Fragment {
         mCardFaceColor[4] = ContextCompat.getColor(this.requireActivity(), R.color.blue);
         mCardFaceColor[5] = ContextCompat.getColor(this.requireActivity(), R.color.purple);
         mCardFaceColor[6] = ContextCompat.getColor(this.requireActivity(), R.color.pink);
-        mCardFaceColor[7] = ContextCompat.getColor(this.requireActivity(), R.color.dark_orange);
+        mCardFaceColor[7] = ContextCompat.getColor(this.requireActivity(), R.color.dark_grey);
         mCardFaceColor[8] = ContextCompat.getColor(this.requireActivity(), R.color.dark_green);
         mCardFaceColor[9] = ContextCompat.getColor(this.requireActivity(), R.color.teal);
         mCardBackColor = ContextCompat.getColor(this.requireActivity(), R.color.dark_teal);

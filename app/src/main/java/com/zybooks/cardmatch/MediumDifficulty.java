@@ -17,8 +17,8 @@ public class MediumDifficulty extends Fragment {
     private GridLayout mCardGrid;
     //private TextView mScore;
     int mCardBackColor;
-    // at its biggest of 4x5, we need 10 colors, must be assigned in onCreate
-    int[] mCardFaceColor = new int[10];
+    // at 4x4, we need 8 colors, must be assigned in onCreate
+    int[] mCardFaceColor = new int[8];
     View[] selectedViewsPair = new View[2];
     int selectedViewsCounter;
 
@@ -27,7 +27,7 @@ public class MediumDifficulty extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View parentView = inflater.inflate(R.layout.fragment_hard_difficulty, container, false);
+        View parentView = inflater.inflate(R.layout.fragment_medium_difficulty, container, false);
 
         mCardFaceColor[0] = ContextCompat.getColor(this.requireActivity(), R.color.red);
         mCardFaceColor[1] = ContextCompat.getColor(this.requireActivity(), R.color.light_orange);
@@ -36,9 +36,7 @@ public class MediumDifficulty extends Fragment {
         mCardFaceColor[4] = ContextCompat.getColor(this.requireActivity(), R.color.blue);
         mCardFaceColor[5] = ContextCompat.getColor(this.requireActivity(), R.color.purple);
         mCardFaceColor[6] = ContextCompat.getColor(this.requireActivity(), R.color.pink);
-        mCardFaceColor[7] = ContextCompat.getColor(this.requireActivity(), R.color.dark_orange);
-        mCardFaceColor[8] = ContextCompat.getColor(this.requireActivity(), R.color.dark_green);
-        mCardFaceColor[9] = ContextCompat.getColor(this.requireActivity(), R.color.teal);
+        mCardFaceColor[7] = ContextCompat.getColor(this.requireActivity(), R.color.dark_green);
         mCardBackColor = ContextCompat.getColor(this.requireActivity(), R.color.dark_teal);
 
         selectedViewsCounter = 0;
