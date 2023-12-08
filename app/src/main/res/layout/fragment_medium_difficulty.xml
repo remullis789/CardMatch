@@ -58,6 +58,5 @@
         android:textColor="@color/off_white"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/light_grid"
-        android:background="@drawable/newgame_button"/>
+        app:layout_constraintTop_toBottomOf="@id/light_grid" />
 </androidx.constraintlayout.widget.ConstraintLayout>

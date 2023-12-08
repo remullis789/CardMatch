@@ -1,7 +1,7 @@
 <resources>
     <style name="Theme.CardMatch" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/teal</item>
-        <item name="colorPrimaryDark">@color/dark_teal</item>
+        <item name="colorPrimary">#234358</item>
+        <item name="colorPrimaryDark">@color/off_white</item>
     </style>
 
     <style name="Card">

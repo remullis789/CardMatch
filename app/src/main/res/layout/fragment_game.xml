@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="60dp"
     tools:context="com.zybooks.cardmatch.MainActivity">
 
     <TextView
@@ -13,11 +14,11 @@
         android:layout_height="wrap_content"
         android:text="@string/score_label"
         android:textSize="30sp"
-        android:textColor="@color/dark_teal"
+        android:textColor="#234358"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="40dp" />
 
     <GridLayout
         android:id="@+id/light_grid"
@@ -48,12 +49,21 @@
     <Button
         android:id="@+id/new_game_button"
         style="@style/GameOptionButton"
-        android:layout_marginTop="40dp"
         android:layout_width="180dp"
+        android:layout_marginTop="40dp"
+        android:background="#234358"
         android:text="@string/new_game"
         android:textColor="@color/off_white"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/light_grid"
-        android:background="@drawable/newgame_button"/>
+        app:layout_constraintTop_toBottomOf="@id/light_grid" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:padding="18dp"
+        android:id="@+id/btn_search"
+        android:background="@drawable/help_button" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
