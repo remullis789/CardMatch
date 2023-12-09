@@ -7,9 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 public class HardDifficulty extends Fragment {
@@ -52,6 +54,15 @@ public class HardDifficulty extends Fragment {
 
         Button newGameBtn = parentView.findViewById(R.id.new_game_button);
         newGameBtn.setOnClickListener(v -> onNewGameClick(parentView));
+
+        ImageView helpIcon = parentView.findViewById(R.id.btn_search);
+        helpIcon.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                DialogFragment helpMessage = new HelpDialog();
+                helpMessage.show(getParentFragmentManager(), "help");
+            }
+        });
 
         mGame = new CardGame(4, 5);
         startGame();
