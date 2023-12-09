@@ -8,18 +8,18 @@
     <fragment
         android:id="@+id/navigation_game"
         android:name="com.zybooks.cardmatch.GameFragment"
-        android:label="@string/game_button"
+        android:label="@string/easy"
         tools:layout="@layout/fragment_game" />
 
     <fragment
         android:id="@+id/navigation_difficulty"
-        android:name="com.zybooks.cardmatch.DifficultyFragment"
-        android:label="@string/difficulty_button"
-        tools:layout="@layout/fragment_difficulties" />
+        android:name="com.zybooks.cardmatch.MediumDifficulty"
+        android:label="@string/medium"
+        tools:layout="@layout/fragment_medium_difficulty" />
 
     <fragment
         android:id="@+id/navigation_help"
-        android:name="com.zybooks.cardmatch.helpFragment"
-        android:label="@string/help_button"
-        tools:layout="@layout/fragment_help" />
+        android:name="com.zybooks.cardmatch.HardDifficulty"
+        android:label="@string/hard"
+        tools:layout="@layout/fragment_hard_difficulty" />
 </navigation>

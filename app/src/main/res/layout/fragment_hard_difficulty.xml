@@ -56,11 +56,12 @@
     <Button
         android:id="@+id/new_game_button"
         style="@style/GameOptionButton"
-        android:layout_marginTop="40dp"
         android:layout_width="180dp"
+        android:layout_marginTop="30dp"
         android:text="@string/new_game"
         android:textColor="@color/off_white"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/light_grid"/>
+        app:layout_constraintTop_toBottomOf="@id/light_grid"
+        android:background="@drawable/new_game_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
