@@ -107,7 +107,7 @@ public class HardDifficulty extends Fragment {
 
             } else if ((selectedViewsCounter == 2) && (wasMatch)) {
                 selectedViewsCounter = 0;
-                setScore("Score: " + mGame.getScore());
+                setScore("SCORE: " + mGame.getScore());
                 if(mGame.isGameOver()){
                     Toast toast = Toast.makeText(getContext(), R.string.congrats, Toast.LENGTH_SHORT);
                     toast.show();
@@ -140,7 +140,7 @@ public class HardDifficulty extends Fragment {
     public void onNewGameClick(View view) {
         //mScore = findViewById(R.id.score_text);
         //mScore.setText("Score: 0");
-        setScore("Score: 0");
+        setScore("SCORE: 0");
         startGame();
     }
 
