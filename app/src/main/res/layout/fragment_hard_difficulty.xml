@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="20dp" />
 
     <GridLayout
         android:id="@+id/light_grid"
@@ -26,7 +26,7 @@
         android:useDefaultMargins="true"
         android:columnCount="4"
         android:rowCount="5"
-        android:layout_margin="100dp"
+        android:layout_margin="80dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
@@ -64,4 +64,13 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/light_grid"
         android:background="@drawable/new_game_button" />
+
+    <ImageView
+        android:id="@+id/btn_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/help_button"
+        android:gravity="center"
+        android:padding="20dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
