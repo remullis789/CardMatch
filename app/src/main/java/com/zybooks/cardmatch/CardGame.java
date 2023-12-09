@@ -23,8 +23,6 @@ public class CardGame {
         matchedCards = new boolean[GRID_HEIGHT][GRID_WIDTH];
     }
 
-    public int SelectedColor = 0;
-
     public void newGame(int height, int width) {
         GRID_HEIGHT = height;
         GRID_WIDTH = width;
@@ -73,13 +71,10 @@ public class CardGame {
         return true;
     }
 
-    // incomplete----------------------------------------------------
-    // does too much, need to split
-    public boolean selectCard(int row, int col) {
+     public boolean selectCard(int row, int col) {
         // only lets user interact with unmatched cards
         if(!matchedCards[row][col]) {
             selectedCardsCounter++;
-            Log.d("CREATION", String.valueOf(selectedCardsCounter));
             // determine if user selected 1st or 2nd card, record
             if (selectedCardsCounter == 1) {
                 selectedCards[0] = row;
@@ -114,7 +109,6 @@ public class CardGame {
         int row_2 = selectedCards[2];
         int col_2 = selectedCards[3];
 
-        Log.d("CREATION", String.valueOf(mCardGrid[row_1][col_1] == mCardGrid[row_2][col_2]));
         if(mCardGrid[row_1][col_1] == mCardGrid[row_2][col_2]){
             matchedCards[row_1][col_1] = true;
             matchedCards[row_2][col_2] = true;
@@ -129,10 +123,7 @@ public class CardGame {
     }
 
 
-    public boolean isGameOver() {
-        return (score == ((GRID_HEIGHT * GRID_WIDTH) / 2));
-    }
-    // incomplete----------------------------------------------------
+    public boolean isGameOver() {return (score == ((GRID_HEIGHT * GRID_WIDTH) / 2));}
 
 
 
