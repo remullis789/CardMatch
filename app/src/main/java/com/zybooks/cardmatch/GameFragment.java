@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
@@ -106,6 +108,10 @@ public class GameFragment extends Fragment {
             } else if ((selectedViewsCounter == 2) && (wasMatch)) {
                 selectedViewsCounter = 0;
                 setScore("Score: " + mGame.getScore());
+                if(mGame.isGameOver()){
+                    Toast toast = Toast.makeText(getContext(), R.string.congrats, Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         }
     }
